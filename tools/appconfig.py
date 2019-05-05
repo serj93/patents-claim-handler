@@ -6,7 +6,7 @@ class AppConfig(object):
     # Директория файлов обработки (грамматика, результат и т.д.)
     TOMITA_OUT_PATH = './tools/pytomita/'
     # Абсолютный путь до бинарника Томита-парсера
-    TOMITA_BIN_PATH = '/home/serj/NLP/segmenter/external/tomita-linux64'
+    TOMITA_BIN_PATH = '/path/to/tomita-binary-file'
     # Модель чанкера именных групп (относительный путь от скрипта запуска)
     CHUNKER_MODEL_PATH = './models/rus-chunker.crfsuite'
     # Шаблон онтологии (для заполнения)
