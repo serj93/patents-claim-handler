@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE ru-patent-document SYSTEM "ru-patent-document-v1-3.dtd">
+<ru-patent-document lang="ru" dtd-version="ru-patent-document-v1-3" doc-number="02445229" country="RU" kind="C1" date-publ="20120320" status="N">
+<SDOBI lang="ru">
+<B100>
+<B110>02445229</B110>
+<B130>C1</B130>
+
+<B140><date>20120320</date></B140>
+<B190>RU</B190>
+</B100>
+<ru-b200 ru-priority="22">
+<B210>2010150220/11</B210>
+<B220><date>20101207</date></B220>
+<B240><ru-b240><date>20101207</date></ru-b240></B240>
+</ru-b200>
+<B400>
+<B450><date>20120320</date></B450>
+</B400>
+<B500>
+<B510EP>
+<classification-ipcr><ipc-version-indicator><date>20060101</date></ipc-version-indicator><classification-level>ipcr-advanced</classification-level><section>B</section><class>63</class><subclass>B</subclass><main-group>  22</main-group><subgroup>00    </subgroup><symbol-position>first-symbol-position</symbol-position><classification-value>invention</classification-value><action-date><date>20111010</date></action-date><generating-office><country>RU</country></generating-office><classification-status>original-classification</classification-status><classification-data-source>human-generated-classification</classification-data-source></classification-ipcr>
+<classification-ipcr><ipc-version-indicator><date>20060101</date></ipc-version-indicator><classification-level>ipcr-advanced</classification-level><section>B</section><class>63</class><subclass>B</subclass><main-group>  22</main-group><subgroup>20    </subgroup><symbol-position>later-symbol-position</symbol-position><classification-value>invention</classification-value><action-date><date>20111010</date></action-date><generating-office><country>RU</country></generating-office><classification-status>original-classification</classification-status><classification-data-source>human-generated-classification</classification-data-source></classification-ipcr>
+</B510EP>
+<ru-b540>
+<B541>ru</B541><ru-b542>СКАНИРУЮЩИЙ ЗОНД ДЛЯ РАБОТЫ В ОКЕАНЕ</ru-b542>
+</ru-b540>
+
+<B560><ru-b560>RU 2137662 C1, 20.09.1999. SU 1199701 A, 23.12.1985. US 3376588 A, 09.04.1968. US 3908548 A, 30.09.1985. DE 3900572 A1, 12.07.1990.</ru-b560></B560>
+</B500>
+<B700><B720>
+<B721><ru-name-text>Смирнов Алексей Владимирович (RU)</ru-name-text></B721>
+<B721><ru-name-text>Серых Виктор Яковлевич (RU)</ru-name-text></B721>
+<B721><ru-name-text>Дозоров Том Анатольевич (RU)</ru-name-text></B721>
+</B720>
+<B730>
+<B731><ru-name-text>Учреждение Российской академии наук Институт океанологии им. П.П. Ширшова РАН (RU)</ru-name-text></B731>
+</B730></B700>
+<B900>
+<ru-b980>117997, Москва, Нахимовский пр-кт, 36, Учреждение РАН, Институт океанологии им. П.П. Ширшова, Патентоведу</ru-b980>
+</B900>
+
+
+</SDOBI>
+
+<SDOBI lang="en">
+<B100>
+<B110>02445229</B110>
+<B130>C1</B130>
+
+<B140><date>20120320</date></B140>
+<B190>RU</B190>
+</B100>
+<ru-b200 ru-priority="22">
+<B210>2010150220/11</B210>
+<B220><date>20101207</date></B220>
+<B240><ru-b240><date>20101207</date></ru-b240></B240>
+</ru-b200>
+<B400>
+<B450><date>20120320</date></B450>
+</B400>
+<B500>
+<B510EP>
+<classification-ipcr><ipc-version-indicator><date>20060101</date></ipc-version-indicator><classification-level>ipcr-advanced</classification-level><section>B</section><class>63</class><subclass>B</subclass><main-group>  22</main-group><subgroup>00    </subgroup><symbol-position>first-symbol-position</symbol-position><classification-value>invention</classification-value><action-date><date>20111010</date></action-date><generating-office><country>RU</country></generating-office><classification-status>original-classification</classification-status><classification-data-source>human-generated-classification</classification-data-source></classification-ipcr>
+<classification-ipcr><ipc-version-indicator><date>20060101</date></ipc-version-indicator><classification-level>ipcr-advanced</classification-level><section>B</section><class>63</class><subclass>B</subclass><main-group>  22</main-group><subgroup>20    </subgroup><symbol-position>later-symbol-position</symbol-position><classification-value>invention</classification-value><action-date><date>20111010</date></action-date><generating-office><country>RU</country></generating-office><classification-status>original-classification</classification-status><classification-data-source>human-generated-classification</classification-data-source></classification-ipcr>
+</B510EP>
+<ru-b540>
+<B541>en</B541><ru-b542>SCANNING PROBE FOR OPERATION IN OCEAN</ru-b542>
+</ru-b540></B500>
+<B700><B720>
+<B721><ru-name-text>Smirnov Aleksej Vladimirovich (RU)</ru-name-text></B721>
+<B721><ru-name-text>Serykh Viktor Jakovlevich (RU)</ru-name-text></B721>
+<B721><ru-name-text>Dozorov Tom Anatol'evich (RU)</ru-name-text></B721>
+</B720>
+<B730>
+<B731><ru-name-text>Uchrezhdenie Rossijskoj akademii nauk Institut okeanologii im. P.P. Shirshova RAN (RU)</ru-name-text></B731>
+</B730></B700>
+<B900>
+<ru-b980>117997, Moskva, Nakhimovskij pr-kt, 36, Uchrezhdenie RAN, Institut okeanologii im. P.P. Shirshova, Patentovedu</ru-b980>
+</B900>
+
+
+</SDOBI>
+
+<description lang="ru" status="N">
+<p num="1">Настоящее предлагаемое изобретение относится к морской технике, к исследованию физических и химических свойств водной среды.</p>
+<p num="2">Известен сканирующий буй, для перемещения которого по глубине используется градиент термоклина, существующего в океане [1]. Помимо ограничений, связанных с принципом его работы, его конструкция не позволяет разместить внутри него большое количество измерительных устройств, его навигация и поиск также затруднены.</p>
+<p num="3">Известен буй для обозначения затонувших объектов, являющийся по совокупности существенных признаков наиболее близким к заявленному устройству и взятый авторами за прототип. Буй выполнен в виде цилиндра, в котором размещены источники питания, приборный отсек, системы радио- и гидроакустической связи. Корпус буя соединен тонким тросом с балластом [2].</p>
+<p num="4">Как понятно из назначения буя, он не в состоянии выполнять исследовательские функции.</p>
+<p num="5">Целью настоящего предлагаемого изобретения является расширение функциональных возможностей измерительного зонда (буя) и увеличение ресурса его работы.</p>
+<p num="6">Поставленная цель достигается тем, что в известном зонде, выполненном в виде цилиндра, в котором размещены источник питания, блоки измерительных приборов, устройства гидроакустической и радиосвязи, устройство управления и лебедка с фалом, соединенным с якорем, внутрь корпуса помещена система плавучести в виде жесткой оболочки с верхним клапаном стравливания газа и нижним клапаном впуска воды, при этом жесткая оболочка соединена трубкой с механизмом разрушения капсул с гидрореагентом, кроме того, лебедка размещена в корзине, с одной стороны шарнирно соединенной с корпусом зонда, а с другой - с подпружиненным штоком генератора подзарядки источника питания.</p>
+<p num="7">Жесткая оболочка с клапанами стравливания и впуска, соединенная с механизмом разрушения капсул, обеспечивает неограниченное перемещение зонда по вертикали, а шарнирное соединение подпружиненной корзины, связанной с генератором подзарядки, делает практически неограниченным ресурс работы зонда. Этим достигаются поставленные цели.</p>
+<p num="8">Возможность практической реализации</p>
+<p num="9">На фиг.1 показана конструкция предложенного сканирующего зонда. Он содержит: теряемый якорь - 1, фал кевларовый с нулевой плавучестью - 2, лебедку электроприводную с тормозной муфтой - 3, плавающую корзину лебедки (рычаг системы подзарядки) - 4, генератор подзарядки от поверхностного волнения - 5, блок измерительных приборов и устройства управления - 6, легкий корпус системы плавучести - 7, механизм протяжки и разрушения капсул с гидрореагентом - 8, клапан стравливания газа - 9, датчик уровня - 10, клапан впуска воды - 11, блок гидроакустической и радиосвязи - 12.</p>
+<p num="10">В зонде используются специальные гидрореагирующие вещества, создающие при химической реакции с морской водой большой объем газовой смеси, которая вытесняет морскую воду из корпуса системы плавучести - 7.</p>
+<p num="11">При приходе судна в заданную точку крановой лебедкой зонд вместе с теряемым якорем - 1 выносится за борт. Электропитание зонда включается еще на борту. С бортового пульта управления дается команда на спуск якоря, информация о натяжении кевларового фала - 2 передается по радиоканалу оператору, и он определяет касание дна якорем. Спусковой фал снимается с рыма зонда и оператор дает команду о начале работы зондирования в автоматическом режиме.</p>
+<p num="12">Погружение сканирующего зонда от поверхности до дна осуществляется с помощью лебедки - 3, которая наматывает кевларовый фал - 2, притягивая зонд к якорю. Внутренняя полость системы плавучести - 7 через открытый клапан - 11 заполняется водой. При достижении дна концевой магнит, который закреплен на кевларовом фале (на чертеже не показан), через систему управления отключает лебедку и через некоторое время, заданное программой измерений, закрывает клапан - 11 и включает механизм разрушения капсул с гидрореагентом - 8. Гидрореагент представляет собой пастообразное вещество, загерметизированное в капсулах на ленте, которая протягивается через механизм разрушения - 8. Прочный корпус в такой разгруженной системе отсутствует, что значительно снижает общий вес устройства.</p>
+<p num="13">Один грамм гидрореагента дает при реакции с морской водой до литра газа, что значительно уменьшает энергозатраты на перемещение зонда по вертикали. Разрушение первой капсулы в механизме - 8 вызывает выработку газа, который вытесняет воду через открытый клапан - 11 (клапан стравливания газа - 9 в это время закрыт), общая плавучесть зонда становится положительной и он всплывает, излишек газа выходит через клапан - 11.</p>
+<p num="14">Находясь на поверхности, зонд отрабатывает волнение океана, благодаря которому корзина лебедки - 4 постоянно движется, а генератор - 5 обеспечивает подзарядку источников питания.</p>
+<p num="15">На поверхности система управления дает сигнал на открытие клапана - 9, зонд погружается. Погружение и подъем зонда сопровождаются передачей информации по гидроакустическому каналу на борт судна или запоминанием ее в оперативной памяти зонда.</p>
+<p num="16">После отработки заданной якорной программы зонд может быть извлечен на борт судна путем подачи команды по гидроакустическому каналу, по которой происходит разрушение капсулы с гидрореагентом, отключение тормоза лебедки и полное стравливание кевларового фала.</p>
+<p num="17">В режиме свободного дрейфа и сканирования в зонде включается программа, в которой, благодаря датчику уровня - 10, плавучесть зонда поддерживается нейтральной на заданной глубине, и он может дрейфовать в толще океана.</p>
+<p num="18">Зонд проектируется таким образом, чтобы корзина с лебедкой была наиболее тяжелой и имела большое гидродинамическое сопротивление. В этом случае на поверхности будет постоянно обеспечиваться энергоподпитка зонда.</p>
+<p num="19">Источники информации</p>
+<p num="20">1. Патент России №2153439</p>
+<p num="21">2. Патент России №2155966</p></description>
+<claims lang="ru"><claim num="1"><claim-text>1. Сканирующий зонд для работы в океане, содержащий корпус, выполненный в виде цилиндра, в котором размещены источник питания, блоки измерительных приборов, устройства гидроакустической и радиосвязи и устройство управления, а также лебедку с фалом, соединенным с якорем, отличающийся тем, что внутри корпуса помещена система плавучести в виде жесткой оболочки с верхним клапаном стравливания газа и нижним клапаном впуска воды, при этом жесткая оболочка соединена трубкой с механизмом разрушения капсул с гидрореагентом.</claim-text></claim>
+<claim num="2"><claim-text>2. Сканирующий зонд по п.1, отличающийся тем, что лебедка размещена в корзине, с одной стороны шарнирно соединенной с корпусом зонда, а с другой - с подпружиненным штоком генератора подзарядки источника питания.
+</claim-text></claim>
+</claims>
+
+<abstract lang="ru" status="N">
+<p num="22">Изобретение относится к морской технике, к исследованию физических и химических свойств водной среды. Сканирующий зонд для работы в океане выполнен в виде цилиндра, в котором размещены источник питания, блоки измерительных приборов, устройства гидроакустической и радиосвязи, устройство управления, и имеет лебедку с фалом, соединенным с якорем. Внутри корпуса помещена система плавучести в виде жесткой оболочки с верхним клапаном стравливания газа и нижним клапаном впуска воды. Жесткая оболочка соединена трубкой с механизмом разрушения капсул с гидрореагентом. Лебедка размещена в корзине, с одной стороны шарнирно соединенной с корпусом зонда, а с другой - с подпружиненным штоком генератора подзарядки источника питания. Технический результат заключается в расширении функциональных возможностей зонда и в увеличении ресурса его работы. 1 з.п. ф-лы, 1 ил.<img file="00000001.tif" he="252" wi="151" img-format="tif" img-content="drawing"/>
+
+</p></abstract>
+
+<abstract lang="en" status="N">
+<p num="23">FIELD: transport.</p>
+<p num="24">SUBSTANCE: invention relates to marine equipment and to analysis of physical and chemical properties on water medium. Proposed probe is made up of cylinder accommodating power supply, units of measuring instruments, hydro acoustical and radio communication means, control device and winch with halyard connected with anchor. Housing accommodates buoyancy system made up of rigid envelopment with gas release top valve and air inlet bottom valve. Said rigid envelopment is communicated via tube with mechanism intended for destruction of capsules with hydraulic agent. Winch is arranged in basket articulated, on one side, with probe housing and, on the other side, with spring-loaded rod of power supply charging generator.</p>
+<p num="25">EFFECT: expanded operating performances, longer life.</p>
+<p num="26">2 cl, 1 dwg
+</p></abstract>
+</ru-patent-document>

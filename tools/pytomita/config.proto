@@ -1,0 +1,22 @@
+encoding "utf8";
+
+TTextMinerConfig {
+  Dictionary = "mydic.gzt";
+
+  Input = {
+    File = "documents_dlp.txt";
+  }
+
+  Articles = [
+    { Name = "технический_объект" }
+  ]
+
+  Facts = [
+    { Name = "AOC" }
+  ]
+
+  Output = {
+    File = "facts.xml";
+    Format = xml;
+  }
+}

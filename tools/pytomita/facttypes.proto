@@ -1,0 +1,9 @@
+import "base.proto";           // описание protobuf-типов
+import "facttypes_base.proto"; // описание protobuf-типа NFactType.TFact
+
+message AOC: NFactType.TFact
+{
+  required string Action = 1;
+  required string Object = 2;
+  optional string Condit = 3;
+}

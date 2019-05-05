@@ -1,0 +1,314 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.vstu.ru/cad/ontology-of-devices#"
+     xml:base="http://www.vstu.ru/cad/ontology-of-devices"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:ontology-of-devices="http://www.vstu.ru/cad/ontology-of-devices#">
+    <owl:Ontology rdf:about="http://www.vstu.ru/cad/ontology-of-devices">
+        <owl:versionIRI rdf:resource="http://www.vstu.ru/cad/ontology-of-devices/2.0.0"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.vstu.ru/cad/ontology-of-devices#connected_to -->
+
+    <owl:ObjectProperty rdf:about="http://www.vstu.ru/cad/ontology-of-devices#connected_to">
+        <rdfs:subPropertyOf rdf:resource="http://www.vstu.ru/cad/ontology-of-devices#link"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://www.vstu.ru/cad/ontology-of-devices#Concept"/>
+        <rdfs:range rdf:resource="http://www.vstu.ru/cad/ontology-of-devices#Concept"/>
+        <rdfs:comment>Связь между элементами: устанавливать, закреплять, размещать и т.д.
+Симметрична для элементов.</rdfs:comment>
+        <rdfs:label>connected_to</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.vstu.ru/cad/ontology-of-devices#contains -->
+
+    <owl:ObjectProperty rdf:about="http://www.vstu.ru/cad/ontology-of-devices#contains">
+        <rdfs:subPropertyOf rdf:resource="http://www.vstu.ru/cad/ontology-of-devices#link"/>
+        <rdfs:domain rdf:resource="http://www.vstu.ru/cad/ontology-of-devices#Concept"/>
+        <rdfs:range rdf:resource="http://www.vstu.ru/cad/ontology-of-devices#Concept"/>
+        <rdfs:comment>Связь содержания элемента: иметь, снабжать, вводить и т.д.
+Исходит от родительского элемента по графу.</rdfs:comment>
+        <rdfs:label>contains</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.vstu.ru/cad/ontology-of-devices#has_function -->
+
+    <owl:ObjectProperty rdf:about="http://www.vstu.ru/cad/ontology-of-devices#has_function">
+        <rdfs:domain rdf:resource="http://www.vstu.ru/cad/ontology-of-devices#Component"/>
+        <rdfs:range rdf:resource="http://www.vstu.ru/cad/ontology-of-devices#TechnicalFunction"/>
+        <rdfs:comment>Указание технической функции компонента.</rdfs:comment>
+        <rdfs:label>has_function</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.vstu.ru/cad/ontology-of-devices#has_ipc -->
+
+    <owl:ObjectProperty rdf:about="http://www.vstu.ru/cad/ontology-of-devices#has_ipc">
+        <rdfs:domain rdf:resource="http://www.vstu.ru/cad/ontology-of-devices#Device"/>
+        <rdfs:range rdf:resource="http://www.vstu.ru/cad/ontology-of-devices#IPC"/>
+        <rdfs:comment>Наличие кода МПК.</rdfs:comment>
+        <rdfs:label>has_ipc</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.vstu.ru/cad/ontology-of-devices#link -->
+
+    <owl:ObjectProperty rdf:about="http://www.vstu.ru/cad/ontology-of-devices#link">
+        <rdfs:domain rdf:resource="http://www.vstu.ru/cad/ontology-of-devices#Concept"/>
+        <rdfs:range rdf:resource="http://www.vstu.ru/cad/ontology-of-devices#Concept"/>
+        <rdfs:comment>Агрегирующая связь между концептами. 
+Для более обобщенного поиска (?)</rdfs:comment>
+        <rdfs:label>link</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.vstu.ru/cad/ontology-of-devices#parent_for -->
+
+    <owl:ObjectProperty rdf:about="http://www.vstu.ru/cad/ontology-of-devices#parent_for">
+        <rdfs:subPropertyOf rdf:resource="http://www.vstu.ru/cad/ontology-of-devices#link"/>
+        <rdfs:domain rdf:resource="http://www.vstu.ru/cad/ontology-of-devices#Concept"/>
+        <rdfs:range rdf:resource="http://www.vstu.ru/cad/ontology-of-devices#Concept"/>
+        <rdfs:comment>Неявное родительское отношение (связь have).
+Присвоение родительскому элементу.</rdfs:comment>
+        <rdfs:label>parent_for</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.vstu.ru/cad/ontology-of-devices#part_of -->
+
+    <owl:ObjectProperty rdf:about="http://www.vstu.ru/cad/ontology-of-devices#part_of">
+        <rdfs:subPropertyOf rdf:resource="http://www.vstu.ru/cad/ontology-of-devices#link"/>
+        <rdfs:domain rdf:resource="http://www.vstu.ru/cad/ontology-of-devices#Concept"/>
+        <rdfs:range rdf:resource="http://www.vstu.ru/cad/ontology-of-devices#Concept"/>
+        <rdfs:comment>Неявное отношения компонентов к родовому понятию (изобретению).
+Связь от дочернего элемента.
+Задается для всех (?) элементов.</rdfs:comment>
+        <rdfs:label>part_of</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.vstu.ru/cad/ontology-of-devices#solution_for -->
+
+    <owl:ObjectProperty rdf:about="http://www.vstu.ru/cad/ontology-of-devices#solution_for">
+        <rdfs:domain rdf:resource="http://www.vstu.ru/cad/ontology-of-devices#Device"/>
+        <rdfs:range rdf:resource="http://www.vstu.ru/cad/ontology-of-devices#Problem"/>
+        <rdfs:comment>Отсылка на решение изобретением проблемы.</rdfs:comment>
+        <rdfs:label>solution_for</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.vstu.ru/cad/ontology-of-devices#concept_name -->
+
+    <owl:DatatypeProperty rdf:about="http://www.vstu.ru/cad/ontology-of-devices#concept_name">
+        <rdfs:domain rdf:resource="http://www.vstu.ru/cad/ontology-of-devices#Concept"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Наименование элемента конструкции.</rdfs:comment>
+        <rdfs:label>concept_name</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.vstu.ru/cad/ontology-of-devices#doc_name -->
+
+    <owl:DatatypeProperty rdf:about="http://www.vstu.ru/cad/ontology-of-devices#doc_name">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.vstu.ru/cad/ontology-of-devices#Device"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Полное наименование патента.</rdfs:comment>
+        <rdfs:label>doc_name</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.vstu.ru/cad/ontology-of-devices#doc_num -->
+
+    <owl:DatatypeProperty rdf:about="http://www.vstu.ru/cad/ontology-of-devices#doc_num">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.vstu.ru/cad/ontology-of-devices#Device"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Идентификация патентного документа: 
+1) Код страны/организации;
+2) Номер публикации;
+3) Код вида документа;
+4) Дата публикации документа.
+Чтение из заголовка документа.
+Префикс для всех элементов (?).</rdfs:comment>
+        <rdfs:label>doc_num</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.vstu.ru/cad/ontology-of-devices#doc_org -->
+
+    <owl:DatatypeProperty rdf:about="http://www.vstu.ru/cad/ontology-of-devices#doc_org">
+        <rdfs:domain rdf:resource="http://www.vstu.ru/cad/ontology-of-devices#Device"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Организация-владелец документа.</rdfs:comment>
+        <rdfs:label>doc_org</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.vstu.ru/cad/ontology-of-devices#ipc_code -->
+
+    <owl:DatatypeProperty rdf:about="http://www.vstu.ru/cad/ontology-of-devices#ipc_code">
+        <rdfs:domain rdf:resource="http://www.vstu.ru/cad/ontology-of-devices#IPC"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Код МПК
+Множественный.</rdfs:comment>
+        <rdfs:label>ipc_code</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.vstu.ru/cad/ontology-of-devices#problem_name -->
+
+    <owl:DatatypeProperty rdf:about="http://www.vstu.ru/cad/ontology-of-devices#problem_name">
+        <rdfs:domain rdf:resource="http://www.vstu.ru/cad/ontology-of-devices#Problem"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Предикат при проблеме.</rdfs:comment>
+        <rdfs:label>problem_name</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.vstu.ru/cad/ontology-of-devices#sao_action -->
+
+    <owl:DatatypeProperty rdf:about="http://www.vstu.ru/cad/ontology-of-devices#sao_action">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.vstu.ru/cad/ontology-of-devices#TechnicalFunction"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:label>action_name</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.vstu.ru/cad/ontology-of-devices#sao_object -->
+
+    <owl:DatatypeProperty rdf:about="http://www.vstu.ru/cad/ontology-of-devices#sao_object">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.vstu.ru/cad/ontology-of-devices#TechnicalFunction"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:label>object_name</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.vstu.ru/cad/ontology-of-devices#sao_subject -->
+
+    <owl:DatatypeProperty rdf:about="http://www.vstu.ru/cad/ontology-of-devices#sao_subject">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.vstu.ru/cad/ontology-of-devices#TechnicalFunction"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:label>subject_name</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.vstu.ru/cad/ontology-of-devices#Component -->
+
+    <owl:Class rdf:about="http://www.vstu.ru/cad/ontology-of-devices#Component">
+        <rdfs:subClassOf rdf:resource="http://www.vstu.ru/cad/ontology-of-devices#Concept"/>
+        <rdfs:label>Component</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.vstu.ru/cad/ontology-of-devices#Concept -->
+
+    <owl:Class rdf:about="http://www.vstu.ru/cad/ontology-of-devices#Concept">
+        <rdfs:comment>Агрегация понятий (изобретений и их компонентов).</rdfs:comment>
+        <rdfs:label>Concept</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.vstu.ru/cad/ontology-of-devices#Device -->
+
+    <owl:Class rdf:about="http://www.vstu.ru/cad/ontology-of-devices#Device">
+        <rdfs:subClassOf rdf:resource="http://www.vstu.ru/cad/ontology-of-devices#Concept"/>
+        <rdfs:label>Device</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.vstu.ru/cad/ontology-of-devices#IPC -->
+
+    <owl:Class rdf:about="http://www.vstu.ru/cad/ontology-of-devices#IPC">
+        <rdfs:comment>Код МПК.
+Без отслеживания дубликатов.</rdfs:comment>
+        <rdfs:label>IPC</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.vstu.ru/cad/ontology-of-devices#Problem -->
+
+    <owl:Class rdf:about="http://www.vstu.ru/cad/ontology-of-devices#Problem">
+        <rdfs:comment>Техническая проблема, решаемая устройством.</rdfs:comment>
+        <rdfs:label>Problem</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.vstu.ru/cad/ontology-of-devices#TechnicalFunction -->
+
+    <owl:Class rdf:about="http://www.vstu.ru/cad/ontology-of-devices#TechnicalFunction">
+        <rdfs:comment>Техническая функция объекта в формате SAO.
+Предварительно не заполняется.</rdfs:comment>
+        <rdfs:label>TFunction</rdfs:label>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

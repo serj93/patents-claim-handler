@@ -1,0 +1,9 @@
+encoding "utf8";
+
+import "base.proto";
+import "articles_base.proto";
+
+TAuxDicArticle "improve_verbs"
+{
+    key = { "keywords.txt" type=FILE }
+}

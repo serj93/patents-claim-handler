@@ -1,0 +1,12 @@
+encoding "utf8";
+
+import "base.proto";
+import "articles_base.proto";
+
+import "verbs_dict.gzt";
+import "facttypes.proto";
+
+TAuxDicArticle "технический_объект"
+{
+    key = { "tomita:grammar.cxx" type=CUSTOM }
+}
