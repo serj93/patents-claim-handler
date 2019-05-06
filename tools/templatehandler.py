@@ -356,35 +356,14 @@ class TemplaterHandler(object):
 
     def __init__(self):
         self.registry = DictRegistry()
-        self.can_print = False
 
     def addTemplateToSegments(self, segments):
 
-        #pp.pprint(segments)
-        #exit(0)
-
         for segment in segments:
-
-            # DEBUGGER -----------------------------------\
-            self.can_print = segment['id'] == 222
-
-            if False and segment['text'].find('-')>=0:
-                pp.pprint(segment['morph'])
-                exit(0)
-            #---------------------------------------------/
 
             tmp, is_legal = self.extractTemplate(segment, True)
 
-            if self.can_print and False:
-                pp.pprint(segment['morph'])
-                exit(0)
-
             if not is_legal and tmp != "DROPPED":
-                #print("DEBUGGER addTemplate\n")
-                #print("###: '{}'".format(str(tmp)))
-                #pp.pprint(segment['morph'])
-                #exit(0)
-
                 segment['template'] = 'UNKNOWN'
                 continue
 

@@ -12,7 +12,6 @@ class ConvHandler(object):
         self.udpipe = UdPipeTool()
         self.registry = DictRegistry()
         self.seghelper = SegmentHelper()
-        self.PRINT_DEBUG = False
 
     def startConvolution(self, segments):
 
@@ -21,17 +20,6 @@ class ConvHandler(object):
 
         # Another processing
         segments = self.straightPassing(segments)
-
-        # DEBUGGER ------------------------------------------------------------\
-        if False:
-            print("\nLinkers:")
-            for segment in segments:
-                if 'link' in segment:
-                    print('{}\n{}\t{}\t{}\n'.format(segment['numbered'], segment['id'], segment['type'], str(segment['link'])))
-            print('')
-            #exit(0)
-        #----------------------------------------------------------------------/
-
 
         return segments
 
@@ -56,8 +44,6 @@ class ConvHandler(object):
         for index in range(0, seg_length):
             segment = segments[index]
 
-            self.can_print = segment['id'] == 188
-
             # Флаг смены части клейма
             is_another_part = last_part != segment['part']
             # Сегмент после явного разделителя (разные части клейма)
@@ -77,53 +63,6 @@ class ConvHandler(object):
             #    is_sep_begin = self.startsWithSep(segment, except_begins = ['а также'])
             #    if is_sep_begin:
             #        LCV = None
-
-            # DEBUGGER ---------------------------------------\
-            if self.PRINT_DEBUG:
-                print(segment['id'])
-                print(segment['segm'])
-                print(segment['numbered'])
-
-                pp.pprint(segment['template'])
-                pp.pprint(segment['type'])
-                #if 'tracking' in segment:
-                #    pp.pprint(segment['tracking'])
-                #pp.pprint(segment['morph'])
-                #pp.pprint(tmp)
-                if segment['id'] == 122:
-                    pp.pprint(segment['morph'])
-                    exit(0)
-
-                if LCV:
-                    segm = self.seghelper.getListIndexByVal(segments, 'id', LCV[0])
-                    if segm:
-                        word = self.getWordById(segm['morph'], LCV[1])
-                        print("LCV [%s:%s] = '%s'" % (LCV[0], LCV[1], word))
-                    else:
-                        print("LCV = No segment")
-                else:
-                    print("LCV = None")
-
-                if LAV:
-                    segm = self.seghelper.getListIndexByVal(segments, 'id', LAV[0])
-                    if segm:
-                        word = self.getWordById(segm['morph'], LAV[1])
-                        print("LAV [%s:%s] = '%s'" % (LAV[0], LAV[1], word))
-                    else:
-                        print("LCV = No segment")
-                else:
-                    print("LAV = None")
-
-                print('\nVERBS::')
-                if 'morph' in segment:
-                    for token in segment['morph']:
-                        if token['pos'] == 'VERB':
-                            print("\n{} {} {}".format(token['id'], token['text'], token['lemma']))
-                            pp.pprint(token['grammar'])
-
-                print('')
-                #continue
-            #-------------------------------------------------/
 
             # Флаг успешной обработки сегмента (для отката на нейзвестный)
             is_succesful = False
@@ -145,11 +84,6 @@ class ConvHandler(object):
                         if LAV and noun_gnc:
                             # + correction Gen-Nom Case (?)
                             is_connected = self.fuzzyCaseComparison(LAV[2], noun_gnc['Case'])
-                            if self.can_print and False:
-                                print(segment['text'])
-                                pp.pprint(LAV)
-                                pp.pprint(is_connected)
-                                exit(0)
 
                             if is_connected:
                                 segment['link'] = {'type': 'homo', 'parent': LAV[0], 'point': LAV[1], 'child': noun_id}
@@ -210,12 +144,6 @@ class ConvHandler(object):
                     if noun_gnc:
                         LAV = (segment['id'], v1_id, noun_gnc['Case'])
 
-                        # DEBUGGER -----------------\
-                        if False:
-                            print("LAV is:")
-                            pp.pprint(LAV)
-                        #---------------------------/
-
                         # Проверка на конструкцию V(мн.ч) N(ед.ч.)
                         next_seg_type = self.getTypeOfNextSegment(segments, index)
                         is_uniform = self.checkTemplate(segment['template'], "V_N_CC_N")
@@ -226,11 +154,6 @@ class ConvHandler(object):
                         # Wrong detection on: электрически связанными с [ блоками управления и питания ]
                         # C15_10.16
                         # Fixed: del euristic from findGNCOfSubnoun
-
-                        if self.can_print and False:
-                            pp.pprint(first_verb)
-                            pp.pprint(noun_gnc)
-                            exit(0)
 
                         if v1_gnc['Number'] == 'Plur' and noun_gnc['Number'] == 'Sing' and next_seg_type == 'N' and not is_uniform:
                             is_succesful = True
@@ -289,15 +212,6 @@ class ConvHandler(object):
                 # Если есть грамматическая инфа - ищем точку привязки в предыдущих сегментах
                 if is_v1_connection and v1_gnc:
 
-                    # DEBUGGER -------------------------------------------------\
-                    if False and self.can_print:
-                        #print(segment['segm'])
-                        print("VERB '%s' is looking for..."%(first_verb['text']))
-                        pp.pprint(v1_gnc)
-                        print("")
-                        #exit(0)
-                    #-----------------------------------------------------------/
-
                     # Warning! is_accurate = False (не различает Вин/Род)
                     is_accurate = True
                     parent_seg_index, point = self.findNounPoint(segments, index, v1_gnc, spec_flag = is_accurate, search_type = 'part')
@@ -307,25 +221,7 @@ class ConvHandler(object):
                         is_accurate = False
                         parent_seg_index, point = self.findNounPoint(segments, index, v1_gnc, spec_flag = is_accurate, search_type = 'part')
 
-                    if self.can_print and False:
-                        pp.pprint(parent_seg_index)
-                        pp.pprint(point)
-                        exit(0)
-
                     if parent_seg_index != None:
-
-                        # DEBUGGER -----------------------------------------\
-                        if False:
-                            pp.pprint(segments[parent_seg_index]['segm'])
-                            for item in segments[parent_seg_index]['morph']:
-                                if item['id'] == point:
-                                    print("Parent is '%s'"%(item['text']))
-                                    parent_gnc = self.seghelper.getGNC(item)
-                                    pp.pprint(parent_gnc)
-
-                            exit(0)
-                        #---------------------------------------------------/
-
                         # Привязка причастного оборота
                         segment['link'] = {'type': 'sub', 'parent': segments[parent_seg_index]['id'], 'point': point, 'child': v1_id}
                         is_succesful = True
@@ -345,13 +241,6 @@ class ConvHandler(object):
                                     segment['link'] = {'type': 'sub', 'parent': prev_segment['id'], 'point': root_n['id'], 'child': v1_id}
                                     is_succesful = True
 
-                                    # DEBUGGER -----------------------------------------\
-                                    if False:
-                                        pp.pprint(prev_segment['segm'])
-                                        print("Parent is '%s'" % (root_n['text']))
-                                        parent_gnc = self.seghelper.getGNC(root_n)
-                                        pp.pprint(parent_gnc)
-                                    #---------------------------------------------------/
                 # Independent Segment
                 elif is_after_sep:
                     segment['link'] = {'type': 'self', 'parent': 0, 'point': None, 'child': None}
@@ -365,8 +254,6 @@ class ConvHandler(object):
                         #print("\n#LCV is : '{}' {}\n".format(first_verb['lemma'], str(first_verb['grammar'])))
                         LCV = (segment['id'], v1_id)
                         segment['LCV'] = LCV[1]
-                        if self.PRINT_DEBUG:
-                            print("HAS LCV")
                 #------------------------------------------------------------/
 
             # Full segment
@@ -401,8 +288,6 @@ class ConvHandler(object):
                 if maybe_LCV != None:
                     LCV = maybe_LCV
                     segment['LCV'] = LCV[1]
-                    if self.PRINT_DEBUG:
-                        print("HAS LCV")
 
                 # Проверка на возможную ошибку определения сегмента
                 if segment['template'].startswith('V<P>'):
@@ -587,14 +472,6 @@ class ConvHandler(object):
             last_part = segment['part']
             last_type = segment['type']
 
-            # DEBUGGER ---------------------------\
-            if self.PRINT_DEBUG:
-                if 'link' in segment:
-                    pp.pprint(segment['link'])
-                    print('\n')
-            #-------------------------------------/
-
-        #exit(0)
         return segments
 
     def findFinVerbPoint(self, segments, child_seg_index):
@@ -747,9 +624,6 @@ class ConvHandler(object):
             if int(token['id']) <= int(verb_id):
                 continue
 
-            #if self.can_print:
-            #    print(token['text'])
-
             # Warn!!! электрически связанными с [ блоками управления и питания ] not passed
             # But need:
             # - and (token['deprel'] != 'obl' and token['parent'] != verb_id):
@@ -867,9 +741,6 @@ class ConvHandler(object):
             point = candidates[0][0]
         elif candidates_len > 1:
 
-            #if self.can_print:
-            #    pp.pprint(candidates)
-
             can_be_point = []
             x_range = range(0, candidates_len)
             for x in x_range:
@@ -887,9 +758,6 @@ class ConvHandler(object):
 
                     checked_id = candidates[y][0]
 
-                    #if self.can_print:
-                    #    print("Compare {} on {}\n".format(checked_id, parent_id))
-
                     if checked_id == parent_id:
                         is_child = True
                         break
@@ -897,10 +765,6 @@ class ConvHandler(object):
                     can_be_point.append(current_id)
 
             if len(can_be_point) > 0:
-                #if self.can_print:
-                #    pp.pprint(can_be_point)
-                #    exit(0)
-
                 point = can_be_point[0]
 
         return point
@@ -953,9 +817,6 @@ class ConvHandler(object):
                     # Число совпадает при любом случае
                     if (current_gnc['Number'] == target_gnc['Number']) or \
                     (target_gnc['Number'] == 'Plur' and not is_accurate):
-
-                        #if self.can_print:
-                        #print("\n#Checked '{}' on {}\n".format(token['text'], str(current_gnc)))
 
                         is_gend_similar = current_gnc['Gender'] == target_gnc['Gender']
                         # Cредний род глагола (можно привязать к мужскому)
@@ -1027,14 +888,6 @@ class ConvHandler(object):
                 point_pair = self.findGapParent(segments, index)
 
                 if point_pair != None:
-                    # DEBUGGER ------------------------------------------------\
-                    if False:
-                        print("\nGAP from N(%s) to V<F>(%s)" % (id_pair, index))
-                        print(segments[noun_index]['segm'])
-                        print(segments[index]['segm'])
-                        print("")
-                    #----------------------------------------------------------/
-
                     # Mark parts of GAP-link
                     parent_index = point_pair[0]
                     segments[index]['link'] = {'type': 'gap', 'parent': segments[parent_index]['id'], 'point': point_pair[1], 'child': None}
@@ -1045,7 +898,6 @@ class ConvHandler(object):
 
             prev_part = segment['part']
 
-        #exit(0)
         return segments
 
     def findGapParent(self, segments, base_index):

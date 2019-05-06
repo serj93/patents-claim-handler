@@ -12,10 +12,6 @@ class SAOExtractor(object):
         self.shelper = SegmentHelper()
 
     def startExtraction(self, segments):
-        # DEBUGGER
-        self.is_print_sao = False
-        self.can_print = False
-        self.print_counter = 0
 
         triplets = self.extractTriplets(segments)
 
@@ -54,8 +50,6 @@ class SAOExtractor(object):
             #------------------------------------------------------------------/
 
             segment_link_type = segment['link']['type']
-            # DEBUGGER
-            self.can_print = segment['id'] == 333
 
             if segment['type'] == 'V_N':
 
@@ -85,10 +79,6 @@ class SAOExtractor(object):
                             continue
                         # Коррекциия ИД родительского сегмента
                         sbj_data['seg_id'] = parent_segm_id
-                        if self.can_print and False:
-                            print("Segment:\n{} {}\n".format(segment['id'], segment['segm']))
-                            pp.pprint(sbj_data)
-                            exit(0)
                         #--------------------------------------------------------------------------/
 
                     # Проверка на структуру V_V_N
@@ -98,13 +88,6 @@ class SAOExtractor(object):
                     if nested_verbs:
                         ext_verb_index = nested_verbs[0]
                         int_verb_index = nested_verbs[1]
-
-                        # DEBUGGER ---------------------\
-                        if False:
-                            print(segment['segm'])
-                            pp.pprint(nested_verbs)
-                            print('')
-                        #-------------------------------/
 
                         # Add marker
                         segment['morph'][int_verb_index]['ref'] = ext_verb_index
@@ -141,22 +124,15 @@ class SAOExtractor(object):
 
                             triplet = {'SBJ': sbj_data, 'ACT': act_data, 'OBJ': obj_data}
                             triplets.append(triplet)
-                            # DEBUGGER
-                            self.printTriplet(triplet)
+
                     # Поиск по всем глаголам структуры V_N
                     else:
                         sub_triplets = self.findAllAOInSegment(segment)
-
-                        if self.can_print and False:
-                            pp.pprint(sub_triplets)
-                            exit(0)
 
                         if sub_triplets:
                             for triplet in sub_triplets:
                                 triplet['SBJ'] = sbj_data
                                 triplets.append(triplet)
-                                # DEBUGGER
-                                self.printTriplet(triplet)
 
                 # Case 2
                 elif segment_link_type == 'homo':
@@ -208,8 +184,6 @@ class SAOExtractor(object):
 
                         triplet = {'SBJ': sbj_data, 'ACT': act_data, 'OBJ': obj_data}
                         triplets.append(triplet)
-                        # DEBUGGER
-                        #self.printTriplet(triplet)
 
                 # Case 3
                 elif segment_link_type == 'gap':
@@ -267,8 +241,6 @@ class SAOExtractor(object):
                     triplet = self.findStructures(right_data, left_data, verb, verb_token)
                     if triplet:
                         triplets.append(triplet)
-                        # DEBUGGER
-                        self.printTriplet(triplet)
 
                 # Case 4
                 elif segment_link_type == 'self':
@@ -282,8 +254,6 @@ class SAOExtractor(object):
                             # Add SBJ!
                             triplet['SBJ'] = generic_term
                             triplets.append(triplet)
-                            # DEBUGGER
-                            self.printTriplet(triplet)
 
             # N_V_N & Co
             elif segment['type'] in full_segm_types:
@@ -292,13 +262,6 @@ class SAOExtractor(object):
                 verbs = self.findTargetVerbs(segment)
                 if not verbs:
                     continue
-
-                # DEBUGGER -----------------\
-                if self.can_print and False:
-                    print("{}\n{}, {}\n".format(segment['segm'], segment['tracking'], segment['type']))
-                    pp.pprint(verbs)
-                    exit(0)
-                #---------------------------/
 
                 # Проверка на структуру V_V_N
                 nested_verbs = self.checkNestedVerbs(segment['morph'])
@@ -326,10 +289,6 @@ class SAOExtractor(object):
                 elif segment['type'] == 'который_V_N':
                     mark_which = 'which2'
                 #--------------------------------------------------------------/
-
-                #if self.can_print:
-                #    pp.pprint(verbs)
-                #    exit(0)
 
                 # Handling each verb
                 for verb_index in verbs_indexes:
@@ -368,10 +327,6 @@ class SAOExtractor(object):
                     verb = verbs[verb_index]
                     verb_token = segment['morph'][verb_index]
 
-                    #if self.can_print:
-                    #    pp.pprint(segment['morph'])
-                    #    exit(0)
-
                     triplet = self.findStructures(right_data, left_data, verb, verb_token, mark_which)
                     if triplet:
 
@@ -392,9 +347,6 @@ class SAOExtractor(object):
                         if seg_index == 0 and generic_term == None:
                             generic_term = triplet['SBJ']
                         #------------------------------------------------------/
-
-                        # DEBUGGER
-                        self.printTriplet(triplet)
 
             elif segment['type'] == 'N_-_N':
 
@@ -456,11 +408,6 @@ class SAOExtractor(object):
 
                 triplet = self.findStructures(right_data, left_data, verb, verb_token)
 
-                #if self.can_print:
-                #    print("LOL")
-                #    pp.pprint(triplet)
-                #    exit(0)
-
                 if triplet:
                     # Отметка специфичного
                     triplet['ACT']['type'] = segment['link']['type']
@@ -470,8 +417,6 @@ class SAOExtractor(object):
                     triplet['ACT']['ref'] = str(parent_segm['id']) + '.' + parent_point_id
 
                     triplets.append(triplet)
-                    # DEBUGGER
-                    #self.printTriplet(triplet)
 
                 else:
                     # Поиск родительской связки (субъект или объект)
@@ -496,8 +441,6 @@ class SAOExtractor(object):
                         # Отметка специфичного
                         #triplet['ACT']['type'] = segment['link']['type']
                         triplets.append(triplet)
-                        # DEBUGGER
-                        #self.printTriplet(triplet)
 
             elif segment['type'] == 'N' and segment_link_type == 'homo':
 
@@ -577,8 +520,6 @@ class SAOExtractor(object):
                         act_data = parent_data[1]
                         triplet = {'SBJ': sbj_data, 'ACT': act_data, 'OBJ': obj_data}
                         triplets.append(triplet)
-                        # DEBUGGER
-                        self.printTriplet(triplet)
 
                 # Если готовых связок нет, нужно поискать вместе
                 else:
@@ -613,33 +554,8 @@ class SAOExtractor(object):
                     triplet = self.findStructures(right_data, left_data, verb, verb_token, mark_which)
                     if triplet:
                         triplets.append(triplet)
-                        # DEBUGGER
-                        self.printTriplet(triplet)
-
-        # DEBUGGER
-        if self.is_print_sao:
-            print("TRIPLETS COUNT: {}\n".format(len(triplets)))
 
         return generic_term, triplets
-
-    def printTriplet(self, triplet):
-        """
-        Debug-отрисовка связок
-        """
-        is_full = False
-        if self.is_print_sao:
-
-            self.print_counter += 1
-            print("# {}".format(self.print_counter))
-
-            if is_full:
-                print("S: {}\n   {}".format(triplet['SBJ']['text'], triplet['SBJ']['labels']))
-                print("A: {}".format(triplet['ACT']['text']))
-                print("O: {}\n   {}\n".format(triplet['OBJ']['text'], triplet['OBJ']['labels']))
-            else:
-                print("S: {}".format(triplet['SBJ']['text']))
-                print("A: {}".format(triplet['ACT']['text']))
-                print("O: {}\n".format(triplet['OBJ']['text']))
 
     def checkMarkersInLabels(self, markers, x_labels):
         '''
@@ -681,10 +597,6 @@ class SAOExtractor(object):
 
         verbs_indexes = verbs.keys()
         sent_len = len(segment['morph'])
-
-        #if self.can_print:
-        #    pp.pprint(verbs)
-        #    exit(0)
 
         # Handling each verb
         for verb_index in verbs_indexes:
@@ -741,11 +653,6 @@ class SAOExtractor(object):
 
                 # Try to find OBJ in RIGHT part
                 obj_data = self.extractObject(right_data['morph'], right_data['range'], right_data['labels'], right_data['text'], mod_verb, drop_valences)
-
-                #if self.can_print:
-                #    print("#")
-                #    pp.pprint(obj_data)
-                #    exit(0)
 
                 # Try to find SBJ in LEFT part
                 if obj_data:
@@ -859,12 +766,6 @@ class SAOExtractor(object):
                 self.registry.break_pos
             )
 
-            if self.can_print and False:
-                print("#")
-                print(x_text)
-                pp.pprint(x_labels)
-                exit(0)
-
             sbj_text = self.combineTextOnLabels(
                 morph,
                 x_range,
@@ -888,9 +789,6 @@ class SAOExtractor(object):
             result = self.markSbjTokens(morph, x_range, x_labels, target_pos, target_cases)
             if result:
                 break
-
-        #if self.can_print:
-        #    pp.pprint(x_labels)
 
         # Fill gaps
         points = ['P-SBJ', 'N-SBJ', 'A-SBJ']
@@ -988,12 +886,6 @@ class SAOExtractor(object):
             x_text,
             verb['obj']
         )
-
-        if self.can_print and False:
-            print("#")
-            pp.pprint(x_text)
-            pp.pprint(x_labels)
-            #exit(0)
 
         if is_successful:
             # Add marker -----------------------------\
@@ -1125,10 +1017,6 @@ class SAOExtractor(object):
                             if not valence['before']:
                                 skip_detection = False
 
-                                #print(morph[i]['text'])
-                                #pp.pprint(list(reversed(range(shift,i))))
-                                #exit()
-
                                 # Strong fill!
                                 if x_labels[i - shift] != '':
                                     break
@@ -1254,10 +1142,6 @@ class SAOExtractor(object):
                 continue
 
             if can_mark:
-
-                #DEBUGGER
-                #print('{} {} {}'.format(morph[i]['text'], morph[i]['mark'], is_empty_label))
-
                 is_NP = morph[i]['mark'].isdigit()
                 is_empty_label = x_labels[label_index] == ''
 
@@ -1337,13 +1221,6 @@ class SAOExtractor(object):
 
                 #--------------------------------------------------------------/
 
-            if self.can_print and False:
-                print("#")
-                print(x_text)
-                pp.pprint(list(x_range))
-                pp.pprint(start_indexes)
-                #exit(0)
-
             # Find N<Case>
             shift = x_range[0]
             # Отслеживание сброса на глаголе:
@@ -1359,9 +1236,6 @@ class SAOExtractor(object):
                         continue
 
                     pos = morph[i]['pos']
-
-                    #if self.can_print:
-                    #    print("{} ({})".format(morph[i]['text'], pos))
 
                     if pos == 'VERB':
                         can_skip = token_counter <= skip_border

@@ -87,9 +87,6 @@ class ClaimSegmenter(object):
         segments = []
         for part in parts:
 
-            #print(part)
-            #print('')
-
             seg_pairs = self.udpipe.analyzeTextAndSplit(part)
             for seg_pair in seg_pairs:
                 # Start from 1 (0 is virtual root)
@@ -111,9 +108,6 @@ class ClaimSegmenter(object):
                 segment['type'] = 'UNKNOWN'
                 segments.append(segment)
 
-                #pp.pprint(segment)
-                #exit(0)
-
         return segments
 
     def getSegments(self, text):
@@ -130,18 +124,11 @@ class ClaimSegmenter(object):
 
         parts = self.preproc.splitByPattern(text)
 
-        #pp.pprint(parts)
-        #exit(0)
-
         if len(parts)==1:
             segments = self.wrapSegmentWithMorph(parts[0])
         else:
             # Have two parts
             segments = self.wrapSegmentWithMorph(parts[0], seg_part = 1)
             segments += self.wrapSegmentWithMorph(parts[1], seg_part = 2)
-
-        #pp.pprint(segments)
-        #pp.pprint(self.replacements)
-        #exit(0)
 
         return segments, self.replacements

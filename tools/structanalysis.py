@@ -34,51 +34,9 @@ class StructuralAnalysis(object):
             self.labelCorrection(triplet, segments, 'SBJ')
             self.labelCorrection(triplet, segments, 'OBJ')
 
-            # DEBUGGER ---------------------------------------\
-            if False:
-                print("#{}".format(counter))
-                pp.pprint(triplet['SBJ']['text'])
-                pp.pprint(triplet['SBJ']['labels'])
-                print(">> {}".format(triplet['ACT']['text']))
-                pp.pprint(triplet['OBJ']['text'])
-                pp.pprint(triplet['OBJ']['labels'])
-                print('')
-
-            #-------------------------------------------------/
-
             p_triplet = self.prepareTriplet(triplet, segments)
             if p_triplet:
                 self.p_triplets.append(p_triplet)
-
-        # DEBUGGER ------------------------\
-        if False:
-            counter = 0
-            for p_triplet in self.p_triplets:
-                counter += 1
-                print("#{}".format(counter))
-
-                print("SBJ::")
-                for trip in p_triplet['SBJ']:
-                    print("FULL: '{}'".format(trip['text']))
-                    print(trip['labels'])
-                    print("NORM: '{}'".format(trip['norm_form']))
-                    print("GENT: '{}'".format(trip['gent_form']))
-                    print("TAIL: '{}'".format(trip['gent_tail']))
-                    print('\n')
-
-                print(">> {} ({})".format(p_triplet['ACT']['text'], p_triplet['ACT']['prep']))
-
-                print("OBJ::")
-                for trip in p_triplet['OBJ']:
-                    print("FULL: '{}'".format(trip['text']))
-                    print(trip['labels'])
-                    print("NORM: '{}'".format(trip['norm_form']))
-                    print("GENT: '{}'".format(trip['gent_form']))
-                    print("TAIL: '{}'".format(trip['gent_tail']))
-                    print('\n')
-
-            print('\n')
-        #----------------------------------/
 
         invent_data = None
         if self.p_triplets:
@@ -90,18 +48,6 @@ class StructuralAnalysis(object):
             )
 
             invent_data = self.postproc.dataPostProcessing(invent_data)
-
-            # DEBUGGER ------------------------------------\
-            if False:
-                pp.pprint(invent_data['terms'])
-                print('')
-                pp.pprint(invent_data['verbs'])
-                print('')
-                pp.pprint(invent_data['map'])
-                print('')
-                #print("\nEOF getDesignFeatures...")
-                #exit(0)
-            #---------------------------------------------/
 
         return invent_data
 
@@ -321,15 +267,6 @@ class StructuralAnalysis(object):
             # For add new concept
             root_key = concept['root']
 
-            # DEBUGGER ---------------------------------\
-            if False:
-                pp.pprint(concept['text'])
-                print(concept_type)
-                print(concept['nums'])
-                print(root_key)
-                print('')
-            #-------------------------------------------/
-
             # Concept 1 (simple)
             if concept_type == 1:
 
@@ -364,14 +301,6 @@ class StructuralAnalysis(object):
 
                 # Есть хвост - искать родителя
                 if concept['gent_tail']:
-
-                    # DEBUGGER ------------------------------------------------\
-                    if False:
-                        print("GENT TAIL PROCESSING >>")
-                        print(concept['init_text'])
-                        pp.pprint(concept['gent_tail'])
-                        print('')
-                    #----------------------------------------------------------/
 
                     parents, gent_tail = self.searchGentTail(concept['gent_tail'], p_triplets, p_index)
 
@@ -443,17 +372,8 @@ class StructuralAnalysis(object):
                         if parent_gnc['Gender'] == anafor_gnc['Gender'] and \
                         parent_gnc['Number'] == anafor_gnc['Number']:
                             pre_data['points'].append(global_point)
-                            continue
-                        else:
-                            # DEBUGGER ------------------------------------\
-                            if False:
-                                print("### Unknown anafor. Break.\n")
-                                pp.pprint(concept)
-                                pp.pprint(parent_gnc)
-                                pp.pprint(anafor_gnc)
-                                exit(0)
-                            #----------------------------------------------/
-                            continue
+
+                        continue
 
             # Concept 3 (which 1: N_которого)
             elif concept_type == 3:
@@ -567,10 +487,6 @@ class StructuralAnalysis(object):
             elif concept_type == 4:
                 # Найти анцендент и подставить в качестве родителя
 
-                #pp.pprint(concept['init_text'])
-                #pp.pprint(concept['root'])
-                #exit(0)
-
                 if not concept['which2']['parent'] or not concept['which2']['point']:
                     continue
 
@@ -605,11 +521,6 @@ class StructuralAnalysis(object):
 
                 # Уровень 2: поиск ИГ во внешнем хранилище (сегменты)
                 else:
-                    #print("### Can`t find which 2 point. Break.\n")
-                    #print(concept['init_text'])
-                    #pp.pprint(p_key)
-                    #exit(0)
-
                     seg_id = concept['which2']['parent']
                     parent_segm = self.shelper.getListElementById(segments, seg_id)
 
@@ -626,17 +537,6 @@ class StructuralAnalysis(object):
                         # Добавление терма;
                         # Точка независимая; дубликаты НЕ устанятся позже!
                         pre_data['terms'][p_key] = norm_form
-
-        # DEBUGGER ------------------------------\
-        if False:
-            print("//LOCAL POINTS")
-            pp.pprint(pre_data['points'])
-            print("//LOCAL TERMS")
-            pp.pprint(pre_data['terms'])
-            print("//LOCAL MAP")
-            pp.pprint(pre_data['map'])
-            print("\n")
-        #----------------------------------------/
 
         return pre_data
 

@@ -112,9 +112,6 @@ class TextPreprocessor(object):
         # Always last fixing
         text = self.clearDoubledSpaces(text)
 
-        #pp.pprint(text)
-        #exit(0)
-
         return text
 
     def claerAnotherSimbols(self, text):

@@ -95,19 +95,11 @@ class NPChunker(object):
         :return: result
         """
 
-        #pp.pprint(features)
-        #exit(0)
-
         labels = self.tagger.tag(features)
         if do_braketize:
             result = self.bracketize(text, labels)
         else:
             result = labels
-
-        #pp.pprint(text)
-        #pp.pprint(labels)
-        #print('')
-        #exit(0)
 
         return result
 
@@ -115,9 +107,6 @@ class NPChunker(object):
         features_array = []
         text_sentence =[]
         last_token = ''
-
-        #pp.pprint(data_mystem)
-        #exit(0);
 
         index = -1
         data_len = len(data_mystem)
@@ -269,15 +258,6 @@ class NPChunker(object):
         paar = list(zip(text, bios))
 
         first_word, first_bio = paar[0]
-        '''
-        try:
-            first_word, first_bio = paar[0]
-        except:
-            sys.stderr.write("An error occurred when running NPChunker:'bracketize'!")
-            pp.pprint(text)
-            pp.pprint(bios)
-            exit(0)
-        '''
 
         if first_bio == u"I":
             new_text.append(u"[")

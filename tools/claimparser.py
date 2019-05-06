@@ -40,58 +40,10 @@ class ClaimParser(object):
         segments = data[0]
         replacements = data[1]
 
-        if False and replacements:
-            print("Replacements:")
-            pp.pprint(replacements)
-
-        #self.gbuilder.printSegmentGraph(segments)
-        #exit(0)
-
-        # DEBUGGER ----------------------------------------\
-        if False:
-            scope = range(0, len(segments))
-            for i in scope:
-                segment = segments[i]
-                #if 'morph' in segment:
-                #    del segments[i]['morph']
-                #    pp.pprint(segment)
-                #    exit(0)
-                #continue
-
-                print(segment['id'])
-                print(segment['segm'])
-                print(segment['numbered'])
-                #continue
-
-                pp.pprint(segment['template'])
-                pp.pprint(segment['type'])
-                pp.pprint(segment['link'])
-                #if 'tracking' in segment:
-                #    pp.pprint(segment['tracking'])
-                if segment['id'] == 444:
-                    pp.pprint(segment['morph'])
-                    exit(0)
-                    break
-                tmp, is_legal = self.thandler.extractTemplate(segment, is_ext_verb=True)
-                if not is_legal:
-                    tmp = '###: ' + str(tmp)
-                print('')
-                continue
-        # -------------------------------------------------/
-
         # Extract triplets
         generic_term, triplets = self.extractor.startExtraction(segments)
 
-        if False:
-            for triplet in triplets:
-                print('S:: {}\nA:: {}\nO:: {}\n'.format(triplet['SBJ'], triplet['ACT'], triplet['OBJ']))
-            print('\nTotal retrieved SAO: {}.\n'.format(len(triplets)))
-
         invent_data = self.sanalyzer.getDesignFeatures(segments, replacements, generic_term, triplets)
-
-        if invent_data:
-            #self.gbuilder.printInventGraph(invent_data)
-            pass
 
         return invent_data
 
